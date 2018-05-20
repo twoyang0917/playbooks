@@ -1,0 +1,9 @@
+- name: Install some basic apt package
+  apt: name={{ item }} state=present
+  with_items:
+    - curl
+    - wget
+    - git
+    - vim
+    - htop
+    - tmux
