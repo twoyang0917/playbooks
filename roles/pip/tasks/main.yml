@@ -1,0 +1,29 @@
+- name: check if pip is already installed
+  command: "pip --version"
+  ignore_errors: true
+  register: is_pip_installed
+  changed_when: false
+
+- block:
+  - name: download get-pip.py
+    get_url:
+      url: https://bootstrap.pypa.io/get-pip.py
+      dest: /tmp/get-pip.py
+  
+  - name: install pip
+    command: python /tmp/get-pip.py
+
+  - name: delete get-pip.py
+    file:
+      path: /tmp/get-pip.py
+      state: absent
+
+  when: is_pip_installed.rc != 0
+
+- name: install pip packages
+  pip:
+    name: {{ item }}
+    state: present
+    with_items:
+      - virtualenv
+  when: is_pip_installed.rc == 0

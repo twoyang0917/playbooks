@@ -7,3 +7,8 @@
     - vim
     - htop
     - tmux
+    - python-dev
+    - libpq-dev
+
+- name: vim settings
+  copy: src=vimrc dest=/root/.vimrc
