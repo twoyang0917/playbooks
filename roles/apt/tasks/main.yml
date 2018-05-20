@@ -1,5 +1,7 @@
 - name: Install some basic apt package
-  apt: name={{ item }} state=present
+  apt:
+    name: "{{ item }}"
+    state: present
   with_items:
     - curl
     - wget
@@ -11,4 +13,6 @@
     - libpq-dev
 
 - name: vim settings
-  copy: src=vimrc dest=/root/.vimrc
+  copy:
+    src: vimrc
+    dest: /root/.vimrc

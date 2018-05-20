@@ -22,8 +22,8 @@
 
 - name: install pip packages
   pip:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-    with_items:
-      - virtualenv
+  with_items:
+    - virtualenv
   when: is_pip_installed.rc == 0
