@@ -26,4 +26,3 @@
     state: present
   with_items:
     - virtualenv
-  when: is_pip_installed.rc == 0
